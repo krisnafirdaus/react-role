@@ -96,9 +96,12 @@ src/
 // Public routes
 /login                    # Login page
 
+// Root route (redirects based on role)
+/                        # Redirects admin to /admin, user to /dashboard
+
 // Protected user routes
-/                        # Home page (requires authentication)
-/profile                 # Profile page (requires authentication)
+/dashboard               # Home page (requires authentication)
+/dashboard/profile       # Profile page (requires authentication)
 
 // Admin only routes
 /admin                   # Admin dashboard (requires admin role)
@@ -113,8 +116,11 @@ src/
 ### 3. Implementasi Middleware di Component
 
 ```jsx
+// Root route - redirect based on role
+<Route path="/" element={<RoleBasedRedirect />} />
+
 // Untuk halaman yang memerlukan autentikasi
-<Route path="/profile" element={
+<Route path="/dashboard/profile" element={
   <ProtectedRoute>
     <Profile />
   </ProtectedRoute>

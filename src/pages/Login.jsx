@@ -11,7 +11,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || '/dashboard';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +20,12 @@ export const Login = () => {
 
     const result = await login(credentials);
     if (result.success) {
-      navigate(from, { replace: true });
+      // Redirect based on role
+      if (result.user?.role === 'admin') {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
     } else {
       setError(result.error || 'Login failed');
     }

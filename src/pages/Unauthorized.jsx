@@ -20,7 +20,7 @@ export const Unauthorized = () => {
         </p>
         
         <div className="error-actions">
-          <Link to="/" className="btn-primary">Go to Home</Link>
+          <Link to="/dashboard" className="btn-primary">Go to Dashboard</Link>
           {user?.role === 'admin' && (
             <Link to="/admin" className="btn-secondary">Go to Admin Panel</Link>
           )}

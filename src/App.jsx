@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute, AdminRoute } from './components/ProtectedRoute';
+import { RoleBasedRedirect } from './components/RoleBasedRedirect';
+import { UserInfo } from './components/UserInfo';
 import { AdminLayout } from './components/AdminLayout';
 import { UserLayout } from './components/UserLayout';
 
@@ -22,6 +24,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <UserInfo />
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={
@@ -32,8 +35,11 @@ function App() {
           
           <Route path="/unauthorized" element={<Unauthorized />} />
           
+          {/* Root route - redirect based on role */}
+          <Route path="/" element={<RoleBasedRedirect />} />
+          
           {/* Protected User Routes */}
-          <Route path="/" element={
+          <Route path="/dashboard" element={
             <ProtectedRoute>
               <UserLayout />
             </ProtectedRoute>

@@ -17,8 +17,8 @@ export const UserLayout = () => {
         <div className="user-nav">
           <h1>User Dashboard</h1>
           <nav>
-            <Link to="/" className="nav-link">Home</Link>
-            <Link to="/profile" className="nav-link">Profile</Link>
+            <Link to="/dashboard" className="nav-link">Home</Link>
+            <Link to="/dashboard/profile" className="nav-link">Profile</Link>
           </nav>
         </div>
         <div className="user-info">

@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       
       setUser(mockUser);
       localStorage.setItem('user', JSON.stringify(mockUser));
-      return { success: true };
+      return { success: true, user: mockUser };
     } catch (error) {
       return { success: false, error: error.message };
     }
